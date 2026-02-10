@@ -8,4 +8,4 @@
 7. Jelaskan kode tersebut per soal, agar saya memahaminya dan saya tau mengapa ada hasil yang berbeda 
 8. Berikanlah kode per soal (soal 1,soal 2 dst) beserta dengan penjelasannya
 9. Apakah bisa dalam satu kode keseluruhan? jika bisa maka berikanlah
-10. Apakah sudah sesuai dengan autograding(file .yml) yang saya berikan tadi? 
+10. Apakah sudah sesuai dengan autograding(file .yml) yang saya berikan tadi??
