@@ -2,85 +2,83 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        if (!sc.hasNext()) return;
-        String soal = sc.next();
-
-        switch (soal) {
-
-            
-            // SOAL 1 — Integer Overflow
-            case "Soal1": {
-                int a = sc.nextInt();
-                int b = sc.nextInt();
-
-                // Deteksi overflow TANPA long / try-catch
-                if ((b > 0 && a > Integer.MAX_VALUE - b) ||
-                    (b < 0 && a < Integer.MIN_VALUE - b)) {
-                    System.out.println("OVERFLOW");
-                } else {
-                    System.out.println(a + b);
-                }
-                break;
-            }
-
-            // SOAL 2 — Float vs Double
-            case "Soal2": {
-                double x = sc.nextDouble();
-                double y = sc.nextDouble();
-
-                float fSum = (float)x + (float)y; // WAJIB terpisah
-                double dSum = x + y;
-
-                double diff = Math.abs(dSum - fSum);
-                System.out.printf("%.6f%n", diff);
-
-                break;
-            }
-            
-            // SOAL 3 — Primitive vs Wrapper
-            case "Soal3": {
-                int n = sc.nextInt();
-
-                Integer a = n;
-                Integer b = a;
-
-                a = a + 1;
-
-                System.out.println("==: " + (a == b));
-                System.out.println("equals: " + a.equals(b));
-                break;
-            }
-
-            // SOAL 4 — String Immutability
-            case "Soal4": {
-                String s = sc.next();
-
-                String a = s;
-                String b = new String(s);
-
-                a = a + "X";
-
-                System.out.println("==: " + (a == b));
-                System.out.println("equals: " + a.equals(b));
-                break;
-            }
-
-            // SOAL 5 — Parsing & Type Safety
-            case "Soal5": {
-                int i = Integer.parseInt(sc.next());
-                double d = Double.parseDouble(sc.next());
-                boolean b = Boolean.parseBoolean(sc.next());
-
-                double result = i * d;
-                if (!b) result *= -1;
-
-                System.out.printf("%.2f%n", result);
-                break;
-            }
+        // Cek apakah ada argumen soal (seperti Soal1, Soal2, dst)
+        if (args.length == 0) {
+            System.out.println("Gunakan: java Main <NamaSoal>");
+            return;
         }
 
-        sc.close();
+        Scanner sc = new Scanner(System.in);
+        String pilihanSoal = args[0];
+
+        switch (pilihanSoal) {
+            case "Soal1":
+                // Soal 1: Integer Overflow Detection
+                if (sc.hasNextInt()) {
+                    int a = sc.nextInt();
+                    int b = sc.nextInt();
+                    int res = a + b;
+                    // Menggunakan operasi bitwise untuk deteksi overflow
+                    if (((a ^ res) & (b ^ res)) < 0) {
+                        System.out.println("OVERFLOW");
+                    } else {
+                        System.out.println(res);
+                    }
+                }
+                break;
+
+            case "Soal2":
+    // 1. Baca input sebagai double
+    double x = sc.nextDouble();
+    double y = sc.nextDouble();
+
+    // 2. Logika VITAL: Cast masing-masing variabel ke float SEBELUM dijumlahkan
+    // Ini akan memicu "loss of precision" pada masing-masing angka
+    float resFloat = (float) x + (float) y; 
+
+    // 3. Jumlahkan secara normal sebagai double (presisi tetap terjaga)
+    double resDouble = x + y;
+
+    // 4. Hitung selisih absolutnya
+    double selisih = Math.abs((double) resFloat - resDouble);
+
+    // 5. Cetak dengan 6 digit di belakang koma
+    System.out.printf("%.6f\n", selisih);
+    break;
+
+            case "Soal3":
+                // Soal 3: Primitive vs Wrapper Comparison
+                int n = sc.nextInt();
+                Integer aObj = n; // Autoboxing
+                Integer bObj = aObj;
+                aObj++; // Integer bersifat immutable, operasi ini membuat objek baru
+                System.out.println("==: " + (aObj == bObj));
+                System.out.println("equals: " + aObj.equals(bObj));
+                break;
+
+            case "Soal4":
+                // Soal 4: String Immutability & Reference
+                String s = sc.next();
+                String strA = s;
+                String strB = new String(s); // Membuat objek string baru di heap
+                strA = strA + "X"; // String bersifat immutable
+                System.out.println("==: " + (strA == strB));
+                System.out.println("equals: " + strA.equals(strB));
+                break;
+
+            case "Soal5":
+                // Soal 5: Parsing & Type Safety
+                int valInt = Integer.parseInt(sc.next()); // Parsing ke int
+                double valDouble = Double.parseDouble(sc.next()); // Parsing ke double
+                boolean valBool = Boolean.parseBoolean(sc.next()); // Parsing ke boolean
+                double result = valInt * valDouble;
+                if (!valBool) result *= -1;
+                System.out.printf("%.2f\n", result);
+                break;
+
+            default:
+                System.out.println("Soal tidak ditemukan.");
+                break;
+        }
     }
 }
