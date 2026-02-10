@@ -37,7 +37,6 @@ public class Main {
                 System.out.printf("%.6f%n", diff);
                 break;
             }
-
             
             // SOAL 3 — Primitive vs Wrapper
             case "Soal3": {
@@ -53,9 +52,7 @@ public class Main {
                 break;
             }
 
-            // =====================
             // SOAL 4 — String Immutability
-            // =====================
             case "Soal4": {
                 String s = sc.next();
 
@@ -69,9 +66,7 @@ public class Main {
                 break;
             }
 
-            // =====================
             // SOAL 5 — Parsing & Type Safety
-            // =====================
             case "Soal5": {
                 int i = Integer.parseInt(sc.next());
                 double d = Double.parseDouble(sc.next());
