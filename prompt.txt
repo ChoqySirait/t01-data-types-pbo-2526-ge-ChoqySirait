@@ -10,3 +10,5 @@
 9. Apakah bisa dalam satu kode keseluruhan? jika bisa maka berikanlah
 10. Apakah sudah sesuai dengan autograding(file .yml) yang saya berikan tadi??
 11. Apakah harusnya disini ada sesuatu jika ingin submit?(Ss Github mengenai autograding)
+12. Bagaimana cara meng select kode yang sama pada vs code?
+13. Pada contoh input dan output soal no 2, mengapa outputnya malah 0.0000?

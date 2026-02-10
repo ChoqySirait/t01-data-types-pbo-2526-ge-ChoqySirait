@@ -30,11 +30,12 @@ public class Main {
                 double x = sc.nextDouble();
                 double y = sc.nextDouble();
 
-                float fSum = (float) x + (float) y;
+                float fSum = (float)x + (float)y; // WAJIB terpisah
                 double dSum = x + y;
 
                 double diff = Math.abs(dSum - fSum);
                 System.out.printf("%.6f%n", diff);
+
                 break;
             }
             
